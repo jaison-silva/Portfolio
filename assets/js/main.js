@@ -1,4 +1,3 @@
-
 (function() {
   "use strict";
 
@@ -12,7 +11,7 @@
     } else {
       return document.querySelector(el)
     }
-  }})
+  }
 
   /**
    * Easy event listener function
@@ -244,20 +243,21 @@
    */
   new PureCounter();
 
-  $("#submit-form").submit((e)=>{
-    e.preventDefault()
-    $.ajax({
-        url:"https://script.google.com/macros/s/AKfycbznvp-PivUpnSZWnzPHXq-e7EvtGUIfqhpBNnd336A8BT6jW4s473tXs8LgQKHciL_R/exec",
-        data:$("#submit-form").serialize(),
-        method:"post",
-        success:function (response){
-            alert("Form submitted successfully")
-            window.location.reload()
-            //window.location.href="https://google.com"
-        },
-        error:function (err){
-            alert("Something Error")
+})()
 
-        }
-    })
-})
+$("#submitt").submit((e)=>{
+  e.preventDefault();
+  $.ajax({
+      url: "https://script.google.com/macros/s/AKfycbznvp-PivUpnSZWnzPHXq-e7EvtGUIfqhpBNnd336A8BT6jW4s473tXs8LgQKHciL_R/exec",
+      data: $("#submitt").serialize(),
+      method: "post",
+      success: function (response) {
+          $(".sent-message").show(); 
+          $(".loading, .error-message").hide(); 
+      },
+      error: function (err) {
+          $(".error-message").show(); 
+          $(".loading, .sent-message").hide(); 
+      }
+  });
+});
